@@ -14,7 +14,7 @@ pipeline {
         stage('clone from SCM') {
             steps {
                 sh '''
-                    rm -rf project-parking
+                    rm -rf arm64-statistics-service
                     git clone https://github.com/pq100/arm64-statistics-service.git
                 '''
             }
