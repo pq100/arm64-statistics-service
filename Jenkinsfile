@@ -22,10 +22,10 @@ pipeline {
 
         stage('Docker Image Building') {
             steps {
-                dir('project-parking') {
+                dir('arm64-statistics-service') {
                     sh '''
-                        docker build --platform linux/arm64 -t ${DOCKER_IMAGE_OWNER}/arm64-parking-service:v1 -t ${DOCKER_IMAGE_OWNER}/arm64-parking-service:${DOCKER_BUILD_TAG} ./arm64-parking-service
-                        docker tag ${DOCKER_IMAGE_OWNER}/arm64-parking-service:v1 ${DOCKER_IMAGE_OWNER}/arm64-parking-service:${DOCKER_BUILD_TAG}
+                        docker build --platform linux/arm64 -t ${DOCKER_IMAGE_OWNER}/arm64-parking-service:latest -t ${DOCKER_IMAGE_OWNER}/arm64-parking-service:${DOCKER_BUILD_TAG} ./arm64-parking-service
+                        docker tag ${DOCKER_IMAGE_OWNER}/arm64-parking-service:latest ${DOCKER_IMAGE_OWNER}/arm64-parking-service:${DOCKER_BUILD_TAG}
                     '''
                 }
             }
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 sh '''
                     docker push ${DOCKER_IMAGE_OWNER}/arm64-parking-service:${DOCKER_BUILD_TAG}
-                    docker push ${DOCKER_IMAGE_OWNER}/arm64-parking-service:v1
+                    docker push ${DOCKER_IMAGE_OWNER}/arm64-parking-service:latest
                 '''
             }
         }
